@@ -1,0 +1,60 @@
+[
+{
+    "name":"gramophone",
+    "title":"Blackberry Gramophone Bluetooth Speaker",
+    "price":"9999",
+    "image":"images/gram.png",
+    "description":"Meet the Blackberry Gramophone Speaker - the perfect balance of nostalgia and modernity. Enjoy the warm, rich sound of vinyl, now combined with the convenience of Bluetooth technology.",
+    "features":[
+        "IPX7 Water Resistance",
+        "Bluetooth 5.1 connectivity",
+        "15 hours on a single charge",
+        "30W USB-C Fast Charging"
+    ]
+},
+{
+    "name":"headphones",
+    "title":"Blackberry Harmony Headphones",
+    "price":"9999",
+    "image":"images/headphones.png",
+    "description":"Where Silence Meets Sound.\n Immerse yourself in crystal-clear audio with our cutting-edge active noise cancellation technology, ensuring an uninterrupted auditory experience in any environment. Stay connected to your surroundings with ambient noise control, striking the perfect balance between tranquility and awareness.",
+    "features":[
+        "Active Noise Cancellation", "Ambient Noise Control", "40mm dynamic drivers", "Bluetooth 5.1", "Voice Assistant Integration" 
+    ]
+},
+{
+    "name":"watch",
+    "title":"Blackberry Smart Watch",
+    "price":"6999",
+    "image":"images/watch.png",
+    "description":"an elegant fusion of technology, style, and convenience. With advanced fitness and health tracking and smart home integration, this watch is the ultimate wearable companion.",
+    "features":[
+        "5 Days on a single charge", "IP68 Resistance", "Smart Home Integration", "ECG Sensor"
+    ]
+},
+{
+    "name":"phone",
+    "title":"Black Berry Phone I",
+    "price":"49999",
+    "image":"images/phone.png",
+    "description":"Packed with innovative features, such as Photoshop built into the gallery app, for a seamless and creative experience. With its sleek design, high-resolution camera, and long-lasting battery life, this phone is perfect for capturing moments and getting things done. ",
+    "features":[
+        "6.67 in 120Hz UHD OLED display",
+        "12GB RAM",
+        "512GB Storage",
+        "4500 mAh battery"
+    ]
+},
+{
+    "name":"keyboard",
+    "title":"Blackberry Keyboard Pro",
+    "price":"5999",
+    "description":"The ultimate typing experience with intuitive touch controls and elegant design. Type faster and more efficiently than ever before with the comfort of a physical keyboard paired with the flexibility of a touchscreen display.",
+    "features":[
+        "Gateron Ink Blacks - 60g Actuation Force",
+        "Wired // Wireless",
+        "Double Shot PBT Keycaps",
+        "RGB Backlit, Controlled by RGBerry software"
+    ]
+}
+]
