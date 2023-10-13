@@ -1,7 +1,7 @@
 <div class="gramaphone-container">
     <div class="gramaphone-group1">
         <img class="centeral-image" src="/Group 55.png" />
-        <img class="buynow" src="/Group 49.png" onclick="new function(){window.location.href='/addcart/gramaphone'}" />
+        <img class="buynow" src="/Group 49.png" onclick="buyNow()" />
     </div>
 </div>
 
@@ -37,3 +37,20 @@
         height: auto;
     }
 </style>
+
+<script>
+    async function buyNow(){
+        const response = await fetch(`/addcart/gramophone`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        if (data.success) {
+            window.location.href='/cart'
+        } else {
+            notyf.error(data.msg);
+        }
+    }
+</script>

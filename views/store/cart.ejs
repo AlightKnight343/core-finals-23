@@ -13,10 +13,10 @@
                         <div class="cart-item-name"><%= cart[i].name %></div>
                         <div class="cart-item-quantity">
                             <div class="buy-form" method="post">
-                                <input type="number" placeholder="Qty." id="qty<%= cart[i].productId %>" name="qty"
+                                <input type="number" placeholder="Qty." id="qty<%= cart[i].name %>" name="qty"
                                     min="1" value="<%= cart[i].quantity %>">
                                 <button class="buy-button"
-                                    onclick="changeQuan('<%= cart[i].productId %>')">Save</button>
+                                    onclick="changeQuan('<%= cart[i].name %>')">Save</button>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <span class="cart-item-label">Total:</span>
                             <span class="cart-item-value">₹<%= cart[i].quantity*cart[i].price %></span>
                         </div>
-                        <button onclick="deletepr('<%=cart[i].productId %>')" class="buy-button delete">Delete</button>
+                        <button onclick="deletepr('<%=cart[i].name %>')" class="buy-button delete">Delete</button>
                     </div>
                 </div>
             </div>
@@ -190,8 +190,8 @@
 
 <script>
     var notyf = new Notyf();
-    async function deletepr(productid) {
-        const response = await fetch(`/cart/delete/${productid}`, {
+    async function deletepr(name) {
+        const response = await fetch(`/cart/delete/${name}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -205,9 +205,9 @@
         }
     }
 
-    async function changeQuan(productId) {
-        const quantity = document.getElementById(`qty${productId}`).value;
-        const response = await fetch(`/cart/quantity/${productId}`, {
+    async function changeQuan(name) {
+        const quantity = document.getElementById(`qty${name}`).value;
+        const response = await fetch(`/cart/quantity/${name}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

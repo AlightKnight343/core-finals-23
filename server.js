@@ -70,6 +70,21 @@ app.get('/keyboard', (req, res) => {
 })
 
 
+app.post('/addcart/:id', async (req, res) => {
+    const user = req.user
+    const name = req.params.id
+    const productData = require('./products.json')
+    if(!user) res.redirect('/auth/login')
+    else{
+        let cart = req.user.cart
+        cart.push({name: name, quan: 1})
+        console.log(cart)
+        req.user.cart = cart
+        req.user.save()
+        res.send({ success: true });
+    }
+})
+
 
 //listen
 const PORT = process.env.PORT || 3000

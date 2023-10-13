@@ -26,43 +26,6 @@ router.post('/register', async (req, res) => {
   })
   if (errors.length > 0) {
     res.send(errors);
-<<<<<<< HEAD
-  } else {
-
-    User.findOne({ email:email }).then((user) => {
-      if (user) {
-        req.flash('error', 'User already exists, try logging in instead.')
-        return res.redirect('/auth/register')
-      }
-      const userId = uuid();
-      const newUser = new User({
-        email:email,
-        name: name,
-        password: password,
-        userId: userId,
-      });
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser.save().then((user) => {
-            passport.authenticate('local', (err, user, info) => {
-              if (err) throw err;
-              if (!user) res.send({ "msg": `${info.message}` });
-              else {
-                req.logIn(user, (err) => {
-                  if (err) throw err;
-                  res.send('auth/login');
-                });
-              }
-            })(req, res);
-
-          }).catch((err) => console.log(err));
-        })
-      );
-    });
-=======
->>>>>>> 747a3bd4f7bbfa658d7494720f6321e4d5aad070
   }
   const userId = uuid();
   const newUser = new User({
