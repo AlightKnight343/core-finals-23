@@ -1,78 +1,113 @@
-<div>
-    <div class="landing-class">
-        <div class="signup">
-            <h1>Login</h1>
-            <div class="signup-form">
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Ashok.Kumar@gmail.com">
-                </div>
-                <div class="field">
-                    <label for="pass">Password</label>
-                    <input type="text" id="pass" name="pass" placeholder="@$#0kKum@r1234@secure">
-                </div>
-                <p class="click-here">Don't have an account? <a href="/auth/register">Register here!</a></p>
-                <input type="button" value="proceed" onclick="submit();" class="signup-button" />
-            </div>
+<div class="team">
+    <div class="teamLogin">
+        <div class="schoolLoginForm">
+            <h1 style="color:#fff;">Login</h1>
+            <h2>
+                Email
+            </h2>
+            <input name="email" id="email" type="email" required placeholder="Email"> <br><br>
+            <h2>
+                Password
+            </h2>
+            <input name="password" id="password" type="password" required placeholder="Password">
+            <p class="click-here">Don't have an account? <a href="/auth/register">Register here!</a></p>
+
+            <br><br>
+            <button id="schLoginBtn" onclick="submit()">Login </button>
         </div>
     </div>
 </div>
 
 <style>
-    .click-here {
-        color: #393E47;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
+    h2 {
+        letter-spacing: 1.45px;
+        text-align: left;
+        font-weight: 300;
     }
 
-    .signup-button {
-        margin-top: 20px;
-        background-color: #393E47;
-        color: white;
-        border-radius: 5px;
-        width: 130px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    .field {
-        margin-top: 20px;
+    .team {
         display: flex;
         flex-direction: column;
+        color: #eee;
+    }
+
+    .teamLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+    }
+
+    .teamLogin button {
+        background-color: #4561D8;
+        color: #111;
+        border-radius: 5px;
+        font-size: 1.35vw;
+        font-weight: 400;
+        min-height: 3.5vw;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        margin-top: .5vw;
     }
 
     input {
-        width: 300px;
-        height: 30px;
-        border-radius: 15px;
-        border: 1px solid #BBBBBB;
-        padding: 10px;
-        margin-bottom: 10px;
+        width: 40vw;
+        height: 3vw;
         background-color: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        font-size: 1.3vw;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 1.5vw;
     }
 
-    .signup-form {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    input:focus {
+        outline: none;
     }
 
-    .signup {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    h1 {
+        font-size: 3.5vw;
+        font-weight: 400;
+        text-align: left;
+        letter-spacing: 1.5px;
     }
 
-    .landing-class {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(100vh - 90px);
+    @media(max-width:768px) {
+        button {
+            width: 90vw !important;
+            margin-top: 5vw !important;
+            font-size: 6vw !important;
+            height: 40px !important;
+        }
+
+        .team {
+            margin-left: 2.5vw;
+        }
+
+        input {
+            width: 90vw !important;
+            height: 5vw !important;
+            font-size: 3.5vw !important;
+            padding: 20px !important;
+        }
+
+        h1 {
+            text-align: left !important;
+            font-size: 10vw !important;
+            margin-bottom: 5vw;
+        }
+    }
+</style>
+
+<style>
+    .click-here {
+        color: hsl(219, 11%, 25%);
+        font-size: 25px;
+        font-weight: 600;
+        cursor: pointer;
     }
 </style>
 
@@ -80,7 +115,7 @@
     var notyf = new Notyf();
     async function submit() {
         var email = document.getElementById("email").value;
-        var pass = document.getElementById("pass").value;
+        var pass = document.getElementById("password").value;
         await fetch("/auth/login", {
             method: "POST",
             headers: {
@@ -92,9 +127,9 @@
             })
         }).then(async (response) => {
             res = await response.json()
-            if (res[0].sucess == true) {
+            if (res[0].success == "true") {
                 await notyf.success(
-                'You have been successfully Logged In, redirecting Automatically!');
+                    'You have been successfully Logged In, redirecting Automatically!');
                 setTimeout(function () {
                     window.location.href = "/"
                 }, 1000);
