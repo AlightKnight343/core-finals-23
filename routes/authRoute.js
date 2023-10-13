@@ -49,7 +49,7 @@ router.post('/register', async (req, res) => {
               else {
                 req.logIn(user, (err) => {
                   if (err) throw err;
-                  res.render('auth/login', { msg: "Successfully Authenticated", success: "true", user: req.user });
+                  res.send('auth/login');
                 });
               }
             })(req, res);
@@ -69,7 +69,7 @@ router.get('/login', forwardAuthenticated, (req, res) => {
   res.render('auth/login', {user: req.user})
 })
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', forwardAuthenticated, async (req, res, next) => {
   passport.authenticate('local', { session: true }, (err, user, info) => {
     if (err) throw err;
     if (!user) {

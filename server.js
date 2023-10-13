@@ -14,6 +14,7 @@ const flash = require('express-flash')
 
 //file imports
 const authRoutes = require('./routes/authRoute.js')
+const cart = require('./routes/cart.js')
 
 //middlewares
 app.use(express.json({ limit: '50mb' }), express.urlencoded({ extended: true, limit: '50mb' }))
@@ -44,6 +45,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 
 //routing
 app.use('/auth', authRoutes)
+app.use('/cart', cart)
 
 //listen
 const PORT = process.env.PORT || 5000
