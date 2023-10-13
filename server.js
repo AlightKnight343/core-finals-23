@@ -6,13 +6,14 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const ejs  = require('ejs');
-// const ejsLayouts = require('express-ejs-layouts');
+const ejsLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const passportInit = require('./middleware/passport.js')
 var server = require('http').createServer(app);
 const flash = require('express-flash')
 
 //file imports
+const authRouter = require('./routes/auth.js')
 
 if (process.env.NODE_ENV === 'production') {
     app.enable('trust proxy');
@@ -35,7 +36,7 @@ app.use(cors(corsOptions))
 app.use(express.json({ limit: '50mb' }), express.urlencoded({ extended: true, limit: '50mb' }))
 app.use(express.static('public'))
 app.use(flash())
-// app.use(ejsLayouts)
+app.use(ejsLayouts)
 
 app.set('view engine', 'ejs')
 app.set('views', 'views')
@@ -69,6 +70,7 @@ const dbUri = process.env.MONGO_URI
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
 //routing
+app.use('/auth', authRouter)
 
 //listen
 const PORT = process.env.PORT || 5000

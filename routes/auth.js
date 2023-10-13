@@ -15,9 +15,9 @@ router.get('/register', forwardAuthenticated, (req, res) => {
 
 router.post('/register', async (req, res) => {
   let errors = [];
-  const { name, password, confirmPassword, phoneno, email } = req.body;
+  const { name, password, confirmPassword, email } = req.body;
 
-  if (!name || !password || !phoneno, !email) {
+  if (!name || !password || !email) {
     errors.push({ msg: "All fields are required" })
   };
   if (password != confirmPassword) {
@@ -38,7 +38,6 @@ router.post('/register', async (req, res) => {
         name: name,
         password: password,
         userId: userId,
-        phoneno: phoneno,
       });
       bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(newUser.password, salt, (err, hash) => {
