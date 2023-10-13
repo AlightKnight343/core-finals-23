@@ -63,6 +63,11 @@ app.get('/watch', (req, res) => {
 })
 
 
+app.get('/keyboard', (req, res) => {
+    res.render('keyboard.ejs') // temporary. move to a router later
+})
+
+
 
 //listen
 const PORT = process.env.PORT || 3000
