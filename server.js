@@ -45,6 +45,25 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 //routing
 app.use('/auth', authRoutes)
 
+app.get('/', (req, res) => {
+    res.render('index') // temporary. move to a router later
+})
+
+app.get('/gramophone', (req, res) => {
+    res.render('gramophone.ejs') // temporary. move to a router later
+})
+
+app.get('/headphones', (req, res) => {
+    res.render('headphones.ejs') // temporary. move to a router later
+})
+
+
+app.get('/watch', (req, res) => {
+    res.render('watch.ejs') // temporary. move to a router later
+})
+
+
+
 //listen
 const PORT = process.env.PORT || 3000
 server.listen(PORT, () => console.log(`Connected on port ${PORT}`))
