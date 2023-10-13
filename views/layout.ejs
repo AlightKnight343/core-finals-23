@@ -18,25 +18,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="description" content=<% if(typeof description != "undefined"){ %> "<%= description %>"
-        <%  } else { %> "<%= "Craving superhero food? We are here!." %>" <% } %>>
-    <!-- add ejs discription tag here -->
+    <meta name="description" content=<% if(typeof description !="undefined" ){ %> "<%= description %>" <% } else { %> "
+            <%= "The new BlackBerry is here!" %>" <% } %>>
 
     <title>
-        <% if(typeof title != "undefined"){ %>
-        <%= title %>
-        <%  } else { %>
-        <%= "Mise" %>
+        <% if(typeof title !="undefined" ){ %>
+            <%= title %>
+        <% } else { %>
+            <%= "BlackBerry" %>
         <% } %>
-    </title><!-- title ejs here -->
-
+    </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="logo" href="/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -52,17 +51,23 @@
     <div class="wrapper">
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
         <header>
-            <%- include('partials/navbar.ejs')  %>
+            <%- include('partials/navbar.ejs') %>
         </header>
         <%- body %>
+        <footer>
+            <%- include('partials/footer.ejs') %>
+        </footer>
     </div>
 </body>
 
 <style>
     * {
-        padding: 0;
-        margin: 0;
         font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+        background-color: #0E0E0E;
+        color: white;
     }
 </style>
 

@@ -6,24 +6,27 @@ const User = require('../schemas/userSchema.js'),
   passport = require('passport'),
   { ensureAuthenticated, forwardAuthenticated } = require('../middleware/authenticate.js');
 
-  //register
+//register
 router.get('/register', forwardAuthenticated, (req, res) => {
-  res.render('auth/register', {user: req.user, messages:req.flash()})
+  res.render('auth/register', { user: req.user, messages: req.flash() })
 })
 
 
 router.post('/register', async (req, res) => {
   let errors = [];
-  const { name, password, confirmPassword, email } = req.body;
+  const { name, password, email } = req.body;
 
   if (!name || !password || !email) {
     errors.push({ msg: "All fields are required" })
   };
-  if (password != confirmPassword) {
-    errors.push({ msg: "Passwords do not match" });
-  }
+  User.findOne({ email: email }).then((user) => {
+    if (user) {
+      errors.push('error', 'User already exists, try logging in instead.')
+    }
+  })
   if (errors.length > 0) {
     res.send(errors);
+<<<<<<< HEAD
   } else {
 
     User.findOne({ email:email }).then((user) => {
@@ -58,7 +61,35 @@ router.post('/register', async (req, res) => {
         })
       );
     });
+=======
+>>>>>>> 747a3bd4f7bbfa658d7494720f6321e4d5aad070
   }
+  const userId = uuid();
+  const newUser = new User({
+    email: email,
+    name: name,
+    password: password,
+    userId: userId,
+  });
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.save().then((user) => {
+        passport.authenticate('local', (err, user, info) => {
+          if (err) throw err;
+          if (!user) res.send({ "msg": `${info.message}` });
+          else {
+            req.logIn(user, (err) => {
+              if (err) throw err;
+              res.send([{ msg: "Successfully Authenticated", success: "true", user: req.user }]);
+            });
+          }
+        })(req, res);
+
+      }).catch((err) => console.log(err));
+    })
+  );
 
 })
 
@@ -66,7 +97,7 @@ router.post('/register', async (req, res) => {
 //login 
 
 router.get('/login', forwardAuthenticated, (req, res) => {
-  res.render('auth/login', {user: req.user})
+  res.render('auth/login', { user: req.user })
 })
 
 router.post('/login', forwardAuthenticated, async (req, res, next) => {
@@ -78,7 +109,7 @@ router.post('/login', forwardAuthenticated, async (req, res, next) => {
     } else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.redirect('/dashboard');
+        res.send([{success: "true", user: req.user}])
       });
     }
   })(req, res, next);

@@ -1,52 +1,25 @@
 <!DOCTYPE html>
 <header class="navbar-container">
     <nav class="navbar">
-        <a href="/" class="nav-branding"><img width="50px" src="/logo.png"></a>
+        <a href="/" class="nav-branding"><img src="/logo.png"></a>
         <ul class="nav-menu">
             <li class="nav-item">
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="/store" class="nav-link">All Products</a>
+                <a href="#products" id="Products" class="nav-link">Products</a>
             </li>
             <li class="nav-item">
-                <a href="/store?type=indian" class="nav-link">Indian</a>
+                <a href="/auth/login" class="nav-link">BerryID</a>
             </li>
             <li class="nav-item">
-                <a href="/store?type=western" class="nav-link">Western</a>
+                <a href="/Support" class="nav-link">Support</a>
             </li>
-            <% if (typeof user != "undefined"){ %>
-            <% } else { %>
-
-            <li class="nav-item sign-button-mobile">
-                <a href="/auth/register" class="nav-link">Sign Up</a>
-            </li>
-            <li class="nav-item sign-button-mobile">
-                <a href="/auth/login" class="nav-link">LogIn</a>
-            </li>
-            <% } %>
-
         </ul>
         <div class="right-side-nav">
-            <div class="search-input-div">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search" name="search"
-                        id="search" onsubmit="sendData()" />
-                    <img class="search-icon" alt="search"
-                        src="https://cdn.discordapp.com/attachments/1005877818586038424/1006499467207381062/search.png"
-                        width="20px" onclick="sendData()"/>
-
-            </div>
-            <% if (typeof user != "undefined"){ %>
             <a href="/cart"><img width="28px" style="filter:invert(100%)"
                     src="https://cdn.discordapp.com/attachments/1005877818586038424/1006499498572386345/cart.png"
                     alt="cart"></a>
-            <a href="/dashboard"><img width="28px" style="filter:invert(100%)"
-                    src="https://cdn.discordapp.com/attachments/1005877818586038424/1006499498874380359/profile.png"
-                    alt="profile"></a>
-            <% } else { %>
-            <button class="sign-button" onclick="new function(){window.location.href = '/auth/register'};">Sign
-                up</button>
-            <% } %>
         </div>
         <div class="hamburger">
             <span class="bar"></span>
@@ -75,14 +48,14 @@
     .right-side-nav {
         display: flex;
         justify-content: space-between;
-        width: 30vw;
+        width: 10vw;
         align-items: center;
         margin-right: 30px;
     }
 
     .navbar-container {
         color: #fff;
-        background-color: #000;
+        background-color: #0E0E0E;
     }
 
     .nav-item {
@@ -93,17 +66,17 @@
     .nav-link,
     .nav-branding {
         text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
+        font-weight: 300;
+        font-size: 30px;
         color: #fff;
     }
 
-    .nav-branding {
-        margin-right: 3vw;
+    .nav-branding img {
+        width: 150px;
     }
 
     .navbar {
-        min-height: 90px;
+        height: 110px;
         display: flex;
         align-items: center;
         padding: 0 24px;
@@ -115,7 +88,6 @@
     }
 
     .nav-menu {
-        /* margin-left: 2.5vw; */
         display: flex;
         align-items: center;
         gap: 3vw;
@@ -166,7 +138,7 @@
         color: black;
         font-size: 1.2rem;
         padding-left: 20px;
-        margin:0px;
+        margin: 0px;
         transition: 0.3s;
     }
 
@@ -245,11 +217,11 @@
         navMenu.classList.remove("active");
     }))
 
-    function sendData(){
+    function sendData() {
         const searchInput = document.getElementById("searchInput")
         const payload = searchInput.value
-        window.location.href = '/store/search?search='+payload
+        window.location.href = '/store/search?search=' + payload
     }
-    
+
 
 </script>

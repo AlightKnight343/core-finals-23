@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div class="landing-class">
         <div class="signup">
             <h1>Sign Up</h1>
@@ -24,100 +24,213 @@
             </div>
         </div>
     </div>
+</div> -->
+<div class="reg">
+    <h1>Register</h1>
+    <div id="regForm" class="regForm">
+        <div class="col-1">
+            <input type="email" name="email" placeholder="email id" required id="email"> <br>
+            <input type="password" name="pass" placeholder="Passwierd@1234" required id="pass"> <br>
+        </div>
+        <div class="col-2">
+            <input type="text" name="fullname" placeholder="Aayush Garg" id="fullname" required><br>
+            <input type="password" name="confpass" placeholder="Passwierd@1234" id="confpass" required><br>
+        </div>
+    </div>
+    <p class="click-here">Already have an account? <a href="/auth/login">login instead!</a></p>
+    <div class="buttons-div">
+        <button type="submit" id="regButton" onclick="submit()">Register</button>
+    </div>
 </div>
+
+<script>
+        var notyf = new Notyf();
+        async function submit() {
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+            var name = document.getElementById("fullname").value;
+            await fetch("/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password: pass
+                })
+            }).then(async (response) => {
+                res = await response.json()
+                if (res[0].success == true) {
+                    await notyf.success(
+                        'You have been successfully Logged In, redirecting Automatically!');
+                    setTimeout(function () {
+                        window.location.href = "/"
+                    }, 1000);
+                } else {
+                    await notyf.error(res[0].msg)
+                }
+            });
+        }
+</script>
 
 <style>
     .click-here {
         color: #393E47;
-        font-size: 13px;
+        font-size: 25px;
         font-weight: 600;
         cursor: pointer;
     }
 
-    .signup-button {
-        margin-top: 20px;
-        background-color: #393E47;
-        color: white;
+    .reg {
+        width: 100%;
+        height: calc(100vh - 110px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .regForm {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .col-1,
+    .col-2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .reg h1 {
+        color: #fff;
+        font-size: 3vw;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .reg input {
+        width: 30vw;
+        padding: 0.9vw;
+        background-color: #0e0e0e;
+        border: 1px solid #fff;
+        color: #fff;
+        border-radius: 20px;
+        font-size: 1.25vw;
+    }
+
+    .reg input:focus {
+        outline: none;
+    }
+
+    .reg h3 {
+        font-size: 2vw;
+        font-weight: 400;
+    }
+
+    .reg {
+        padding-bottom: 5vw;
+    }
+
+    .col-1 {
+        float: left;
+        width: 50%;
+
+    }
+
+    .col-2 {
+        float: right;
+        width: 50%;
+
+    }
+
+    .reg button {
+        background-color: #AAB7FF;
+        color: #111;
         border-radius: 5px;
-        width: 130px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 1.35vw;
+        font-weight: 400;
+        min-height: 3.5vw;
         cursor: pointer;
+        width: 30vw;
+        border: none;
+        margin-top: 2.5vw;
     }
 
-    .field {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
+    .reg button:focus {
+        outline: none;
     }
 
-        input {
-            width: 300px;
-            height: 30px;
-            border-radius: 15px;
-            border: 1px solid #BBBBBB;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: transparent;
+    @media(max-width:768px) {
+
+        .password-phone-fix {
+            display: flex;
+            width: 85vw;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-    .signup-form {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        h1 {
+            text-align: left !important;
+            font-size: 10vw !important;
+            margin-left: 2.5vw;
+            margin-bottom: 5vw;
+        }
 
-    .signup {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+        .buttons-div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
 
-    .landing-class {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(100vh - 90px);
-    }
+        #regButton {
+            width: 80vw !important;
+            margin-top: 5vw;
+            font-size: 4.5vw !important;
+            margin-top: 2.5vw !important;
+            padding: 15px !important;
+        }
 
+        h3 {
+            text-align: left !important;
+            font-size: 5vw !important;
+            margin-left: 2.5vw !important;
+            margin-top: 2.5vw !important;
+            width: 80vw;
+        }
+
+        .regForm {
+            flex-direction: column;
+            width: 85vw;
+        }
+
+        .regForm input,
+        .password-phone-fix input {
+            width: 80vw !important;
+            height: 5vw !important;
+            font-size: 3.5vw !important;
+            padding: 20px !important;
+        }
+
+        .pass-inner {
+            flex-direction: column;
+        }
+
+        .pass-inner input {
+            width: 80vw;
+        }
+
+        .password-div {
+            width: 85vw;
+        }
+    }
 </style>
-
-<script>
-    var notyf = new Notyf();
-    async function submit() {
-        var fullname = document.getElementById("fullname").value;
-        var email = document.getElementById("email").value;
-        var pass = document.getElementById("pass").value;
-        var confpass = document.getElementById("confpass").value;
-        if (pass != confpass) {
-            notyf.error("Passwords do not match");
-            return;
-        }
-        await fetch("/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: fullname,
-                email: email,
-                password: pass,
-                confirmPassword: confpass
-            })
-        }).then(async (response) => {
-            res = await response.json()
-            console.log(res)
-            if (res.success) {
-                await notyf.success('You have been successfully registered, redirecting Automatically!');
-                setTimeout(function() {
-                    window.location.href = "/"
-                }, 1000);
-            } else {
-                await notyf.error(res[0].msg)
-            }
-        });
-    }
-</script>
