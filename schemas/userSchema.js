@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
     email: reqString,
     name: reqString,
     password: reqString,
-    phoneno: reqString,
     date: {
         type: String,
         default: dateStringWithTime

@@ -5,7 +5,7 @@ const session = require('cookie-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
-const ejs = require('ejs');
+const ejs  = require('ejs');
 const ejsLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const passportInit = require('./middleware/passport.js')
@@ -13,7 +13,7 @@ var server = require('http').createServer(app);
 const flash = require('express-flash')
 
 //file imports
-const authRoutes = require('./routers/authRoute.js')
+const authRoutes = require('./routes/authRoute.js')
 
 //middlewares
 app.use(express.json({ limit: '50mb' }), express.urlencoded({ extended: true, limit: '50mb' }))
