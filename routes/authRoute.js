@@ -4,10 +4,9 @@ const User = require('../schemas/userSchema.js'),
   bcrypt = require("bcrypt"),
   { uuid } = require('uuidv4'),
   passport = require('passport'),
-  { ensureAuthenticated, forwardAuthenticated } = require('../middleware/authenticate.js')
+  { ensureAuthenticated, forwardAuthenticated } = require('../middleware/authenticate.js');
 
-
-//register
+  //register
 router.get('/register', forwardAuthenticated, (req, res) => {
   res.render('auth/register', {user: req.user, messages:req.flash()})
 })
