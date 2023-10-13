@@ -46,5 +46,5 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 app.use('/auth', authRoutes)
 
 //listen
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 server.listen(PORT, () => console.log(`Connected on port ${PORT}`))
