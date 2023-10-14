@@ -77,9 +77,22 @@ app.post('/addcart/:id', async (req, res) => {
     if(!user) res.send({success: false})
     else{
         let cart = req.user.cart
-        cart.push({name: name, quan: 1})
+        let newCart = []
+        let flag = false
+        cart.forEach((product) => {
+            if(product.name == name){
+                newCart.push({name: product.name, quan:product.quan+1})
+                flag = true
+            }else{
+                newCart.push({name:product.name, quan:product.quan})
+            }
+        });
+
+        if(!flag){
+            newCart.push({name: name, quan: 1})
+        }
         console.log(cart)
-        req.user.cart = cart
+        req.user.cart = newCart
         req.user.save()
         res.send({ success: true });
     }
