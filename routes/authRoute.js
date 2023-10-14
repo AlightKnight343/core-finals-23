@@ -11,7 +11,6 @@ router.get('/register', forwardAuthenticated, (req, res) => {
   res.render('auth/register', { user: req.user, messages: req.flash() })
 })
 
-
 router.post('/register', async (req, res) => {
   let errors = [];
   const { name, password, email } = req.body;
@@ -55,9 +54,6 @@ router.post('/register', async (req, res) => {
   );
 
 })
-
-
-//login 
 
 router.get('/login', forwardAuthenticated, (req, res) => {
   res.render('auth/login', { user: req.user })
