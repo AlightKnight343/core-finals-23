@@ -47,6 +47,7 @@
 },
 {
     "name":"keyboard",
+    "image": "images/keyboard.png",
     "title":"Blackberry Keyboard Pro",
     "price":"5999",
     "description":"The ultimate typing experience with intuitive touch controls and elegant design. Type faster and more efficiently than ever before with the comfort of a physical keyboard paired with the flexibility of a touchscreen display.",
