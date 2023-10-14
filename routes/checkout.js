@@ -16,7 +16,7 @@ const paymentLink = async (orderid, req, lineItems) => {
     console.log(req.protocol + '://' + req.get('host') + '/checkout/confirm-order/' + orderid);
     return await stripe.paymentLinks.create({
         line_items: lineItems,
-        after_completion: { type: 'redirect', redirect: { url: req.protocol + '://' + req.get('host') + '/checkout/confirm-order/' + orderid } },
+        after_completion: { type: 'redirect', redirect: { url: process.env.HOSTNAME+"/confirm" } },
     }).then((link) => {
         return link;
     });
@@ -43,6 +43,10 @@ router.get('/', (req, res) => {
 
 router.post('/', ensureAuthenticated, async (req, res) => {
     const { line1, line2, line3, name } = req.body;
+    if (!line1 || !line2 || !line3 || !name) {
+        return res.send({ message: "Please fill in all fields", success: false })
+    }
+
 
     const user = await User.findOne({ userId: req.user.userId })
     const orderId = nanoid()
@@ -58,7 +62,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
     const link = await paymentLink(stripe_hidden, req, await Promise.all(products).then((products) => { return products }));
 
     const newOrder = new Order({
-        name:req.user.name,
+        name,
         orderId,
         line1,
         line2,
@@ -117,7 +121,7 @@ router.get('/confirm-order/:id', ensureAuthenticated, async (req, res) => {
             console.log(err)
         })
     } else {
-        res.redirect('/store')
+        res.redirect('/')
     };
 })
 

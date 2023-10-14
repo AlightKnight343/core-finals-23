@@ -71,6 +71,10 @@ app.get('/keyboard', (req, res) => {
     res.render('keyboard.ejs') // temporary. move to a router later
 })
 
+app.get('/confirm', (req, res) => {
+    res.render('store/confirm') 
+})
+
 
 app.post('/addcart/:id', async (req, res) => {
     const user = req.user
