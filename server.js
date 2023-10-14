@@ -74,7 +74,7 @@ app.post('/addcart/:id', async (req, res) => {
     const user = req.user
     const name = req.params.id
     const productData = require('./products.json')
-    if(!user) res.redirect('/auth/login')
+    if(!user) res.send({success: false})
     else{
         let cart = req.user.cart
         cart.push({name: name, quan: 1})
