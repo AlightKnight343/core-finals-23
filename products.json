@@ -10,7 +10,8 @@
         "Bluetooth 5.1 connectivity",
         "15 hours on a single charge",
         "30W USB-C Fast Charging"
-    ]
+    ],
+    "stripe_price":"price_1O0xW1SGmUjBI5y72POFaNUk"
 },
 {
     "name":"headphones",
@@ -20,7 +21,8 @@
     "description":"Where Silence Meets Sound.\n Immerse yourself in crystal-clear audio with our cutting-edge active noise cancellation technology, ensuring an uninterrupted auditory experience in any environment. Stay connected to your surroundings with ambient noise control, striking the perfect balance between tranquility and awareness.",
     "features":[
         "Active Noise Cancellation", "Ambient Noise Control", "40mm dynamic drivers", "Bluetooth 5.1", "Voice Assistant Integration" 
-    ]
+    ],
+    "stripe_price": "price_1O0xVGSGmUjBI5y7h8yeQyHz"
 },
 {
     "name":"watch",
@@ -30,7 +32,9 @@
     "description":"an elegant fusion of technology, style, and convenience. With advanced fitness and health tracking and smart home integration, this watch is the ultimate wearable companion.",
     "features":[
         "5 Days on a single charge", "IP68 Resistance", "Smart Home Integration", "ECG Sensor"
-    ]
+    ],
+    "stripe_price": "price_1O0xYSSGmUjBI5y7Ri4OwQkL"
+
 },
 {
     "name":"phone",
@@ -56,6 +60,7 @@
         "Wired // Wireless",
         "Double Shot PBT Keycaps",
         "RGB Backlit, Controlled by RGBerry software"
-    ]
+    ],
+    "stripe_price": "price_1O0xWzSGmUjBI5y7AqGv5rqv"
 }
 ]

@@ -15,6 +15,7 @@ const flash = require('express-flash')
 //file imports
 const authRoutes = require('./routes/authRoute.js')
 const cart = require('./routes/cart.js')
+const checkout = require('./routes/checkout.js')
 
 //middlewares
 app.use(express.json({ limit: '50mb' }), express.urlencoded({ extended: true, limit: '50mb' }))
@@ -46,6 +47,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 //routing
 app.use('/auth', authRoutes)
 app.use('/cart', cart)
+app.use('/checkout', checkout)
 
 app.get('/', (req, res) => {
     res.render('index') // temporary. move to a router later

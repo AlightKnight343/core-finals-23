@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
     date: reqString,
     userId: reqString,
     status: {type: Boolean, default: false},
-    cart: [{ name: nonreqString, quan: 0 }],
+    cart: [{ name: nonreqString, quan: {type:Number, default:0} }],
 })
 
 module.exports = mongoose.model("Order", orderSchema);
